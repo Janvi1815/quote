@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Random Quote Generator</h1>
+        <div class="quote-box">
+            <p id="quote">Click the button to get a quote!</p>
+            <p id="author">—</p>
+            <button onclick="getQuote()">Get New Quote</button>
+        </div>
+    </div>
+
+    <script>
+        function getQuote() {
+            fetch('/get-quote')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('quote').innerText = `"${data.content}"`;
+                    document.getElementById('author').innerText = `— ${data.author}`;
+                });
+        }
+    </script>
+</body>
+</html>

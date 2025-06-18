@@ -22,5 +22,6 @@ def get_quote():
             "author": "API Error"
         })
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5006)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # ✅ this makes it work on Render
+    app.run(debug=True, host="0.0.0.0", port=port)
